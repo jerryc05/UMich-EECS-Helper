@@ -1,0 +1,26 @@
+um_uniqname="##############"
+caen_addr="login.engin.umich.edu"
+
+function um_rsync_fn() {
+  local cmd=""
+
+  git status &> /dev/null
+  if [ $? -eq 0 ]; then
+    local _clude_args="--exclude='*' --include-from=-"
+    local cmd="git ls-files --exclude-standard | "
+  else
+    if [ -f .gitignore ]; then
+      local _clude_args="--include='**.gitignore' --exclude='/.git' --filter=':- .gitignore'"
+    else
+      local _clude_args="--exclude '.git*'"
+    fi
+  fi
+  local cmd="${cmd}rsync -hLrtvz --delete-after --checksum --progress $_clude_args ./ $um_uniqname@$caen_addr:\"${PWD##*/}/\""
+  echo $cmd
+  echo
+  eval $cmd
+}
+
+alias um-rsync=um_rsync_fn
+
+alias caen="ssh ${uniqname}@${caen_addr}"
