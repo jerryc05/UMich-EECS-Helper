@@ -15,7 +15,7 @@ function um_rsync_fn() {
       local _clude_args="--exclude '.git*'"
     fi
   fi
-  local cmd="${cmd}rsync -hLrtvz --delete-after --checksum --progress $_clude_args ./ $um_uniqname@$caen_addr:\"${PWD##*/}/\""
+  local cmd="${cmd}rsync -hLrtvz --checksum --delete-after --inplace --no-W --progress $_clude_args ./ $um_uniqname@$caen_addr:\"${PWD##*/}/\""
   echo $cmd
   echo
   eval $cmd
