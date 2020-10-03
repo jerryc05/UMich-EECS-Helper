@@ -23,4 +23,4 @@ function um_rsync_fn() {
 
 alias um-rsync=um_rsync_fn
 
-alias caen="ssh ${uniqname}@${caen_addr}"
+alias caen="ssh ${um_uniqname}@${caen_addr}"
