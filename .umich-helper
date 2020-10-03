@@ -1,6 +1,22 @@
 um_uniqname="##############"
 caen_addr="login.engin.umich.edu"
 
+if [ ! -f ~/.ssh/config ]; then
+  mkdir -p ~/.ssh/
+  touch ~/.ssh/config
+fi
+
+grep -q "Host \+caen \+$caen_addr" ~/.ssh/config
+if [ $? -ne 0 ]; then
+  echo "Host caen $caen_addr"               >> ~/.ssh/config
+  echo "  HostName login.engin.umich.edu"   >> ~/.ssh/config
+  echo "  User $um_uniqname"                >> ~/.ssh/config
+  echo "  ControlMaster auto"               >> ~/.ssh/config
+  echo "  ControlPath ~/.ssh/_%r@%h:%p"     >> ~/.ssh/config
+  echo "  ControlPersist 43200"             >> ~/.ssh/config
+fi
+
+
 function um_rsync_fn() {
   local cmd=""
 
@@ -22,5 +38,3 @@ function um_rsync_fn() {
 }
 
 alias um-rsync=um_rsync_fn
-
-alias caen="ssh ${um_uniqname}@${caen_addr}"
