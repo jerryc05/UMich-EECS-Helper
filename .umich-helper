@@ -22,7 +22,7 @@ function um_rsync_fn() {
 
   git status &> /dev/null
   if [ $? -eq 0 ]; then
-    local _clude_args="--exclude='*' --include-from=-"
+    local _clude_args="--include-from=- --exclude='*'"
     local cmd="git ls-files --exclude-standard | "
   else
     if [ -f .gitignore ]; then
@@ -31,7 +31,7 @@ function um_rsync_fn() {
       local _clude_args="--exclude '.git*'"
     fi
   fi
-  local cmd="${cmd}rsync -hLrtvz --checksum --delete-after --inplace --no-W --progress $_clude_args ./ $um_uniqname@$caen_addr:\"${PWD##*/}/\""
+  local cmd="${cmd}rsync -hLrtvz --checksum --delete-after --inplace --no-W --progress $_clude_args ./ $um_uniqname@caen:\"${PWD##*/}/\""
   echo $cmd
   echo
   eval $cmd
