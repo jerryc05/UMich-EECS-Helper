@@ -13,7 +13,7 @@ if [ $? -ne 0 ]; then
   echo "  User $um_uniqname"                >> ~/.ssh/config
   echo "  ControlMaster auto"               >> ~/.ssh/config
   echo "  ControlPath ~/.ssh/_%r@%h:%p"     >> ~/.ssh/config
-  echo "  ControlPersist 43200"             >> ~/.ssh/config
+  echo "  ControlPersist 5h"                >> ~/.ssh/config
 fi
 
 
