@@ -14,6 +14,7 @@ if [ $? -ne 0 ]; then
   echo "  ControlMaster auto"               >> ~/.ssh/config
   echo "  ControlPath ~/.ssh/_%r@%h:%p"     >> ~/.ssh/config
   echo "  ControlPersist 5h"                >> ~/.ssh/config
+  echo "  ServerAliveInterval 30"           >> ~/.ssh/config
 fi
 
 
