@@ -32,7 +32,7 @@ function um_rsync_fn() {
       local _clude_args="--exclude '.git*'"
     fi
   fi
-  local cmd="${cmd}rsync -hLrtvz --checksum --delete-after --inplace --no-W --progress $_clude_args ./ $um_uniqname@caen:\"${PWD##*/}/\""
+  local cmd="${cmd}rsync -hLrtvz --no-perms --no-owner --no-group --checksum --delete-after --inplace --no-whole-file --progress $_clude_args ./ $um_uniqname@caen:\"${PWD##*/}/\""
   echo $cmd
   echo
   eval $cmd
