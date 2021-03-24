@@ -1,4 +1,9 @@
-um_uniqname="##############"
+um_uniqname=""
+if [ -z $um_uniqname ]; then
+  printf "Type your uniqname: "
+  read um_uniqname
+fi
+
 caen_addr="login.engin.umich.edu"
 
 if [ ! -f ~/.ssh/config ]; then
