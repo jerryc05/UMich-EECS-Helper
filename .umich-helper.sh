@@ -12,13 +12,13 @@ if [ ! -f ~/.ssh/config ]; then
 fi
 
 grep -q "Host  *caen-$um_uniqname" ~/.ssh/config || {
-  echo "Host caen"                        >> ~/.ssh/config;
-  echo "  HostName login.engin.umich.edu" >> ~/.ssh/config;
-  echo "  User $um_uniqname"              >> ~/.ssh/config;
-  echo "  ControlMaster auto"             >> ~/.ssh/config;
-  echo "  ControlPath ~/.ssh/_%r@%h:%p"   >> ~/.ssh/config;
-  echo "  ControlPersist 5h"              >> ~/.ssh/config;
-  echo "  ServerAliveInterval 60"         >> ~/.ssh/config;
+  echo "Host caen"                      >> ~/.ssh/config;
+  echo "  HostName $caen_addr"          >> ~/.ssh/config;
+  echo "  User $um_uniqname"            >> ~/.ssh/config;
+  echo "  ControlMaster auto"           >> ~/.ssh/config;
+  echo "  ControlPath ~/.ssh/_%r@%h:%p" >> ~/.ssh/config;
+  echo "  ControlPersist 5h"            >> ~/.ssh/config;
+  echo "  ServerAliveInterval 60"       >> ~/.ssh/config;
 }
 
 
