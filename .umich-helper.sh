@@ -11,7 +11,7 @@ if [ ! -f ~/.ssh/config ]; then
   touch ~/.ssh/config
 fi
 
-grep -q "Host  *caen-$um_uniqname" ~/.ssh/config || {
+grep -q "Host  *caen" ~/.ssh/config || {
   echo "Host caen"                      >> ~/.ssh/config;
   echo "  HostName $caen_addr"          >> ~/.ssh/config;
   echo "  User $um_uniqname"            >> ~/.ssh/config;
@@ -20,6 +20,7 @@ grep -q "Host  *caen-$um_uniqname" ~/.ssh/config || {
   echo "  ControlPersist 5h"            >> ~/.ssh/config;
   echo "  ServerAliveInterval 60"       >> ~/.ssh/config;
 }
+
 
 
 function um_rsync_fn() {
