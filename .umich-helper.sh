@@ -19,8 +19,10 @@ grep -q "Host  *caen" ~/.ssh/config || {
   echo "  ControlPath ~/.ssh/_%r@%h:%p" >> ~/.ssh/config;
   echo "  ControlPersist 5h"            >> ~/.ssh/config;
   echo "  ServerAliveInterval 60"       >> ~/.ssh/config;
-  echo "  ServerAliveCount 3"           >> ~/.ssh/config;
+  echo "#  ServerAliveCount 3"          >> ~/.ssh/config;
+  echo "  ServerAliveCountMax 3"        >> ~/.ssh/config;
 }
+
 
 
 
